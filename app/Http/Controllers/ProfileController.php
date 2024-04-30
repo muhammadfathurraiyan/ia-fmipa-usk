@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Berita;
 
 class ProfileController extends Controller
 {
@@ -21,17 +22,23 @@ class ProfileController extends Controller
 
     public function sejarah(): Response
     {
-        return Inertia::render('Profile/Sejarah');
+        return Inertia::render('Profile/Sejarah',  [
+            'berita' => Berita::where('id', 12)->first()
+        ]);
     }
 
     public function strukturOrganisasi(): Response
     {
-        return Inertia::render('Profile/StrukturOrganisasi');
+        return Inertia::render('Profile/StrukturOrganisasi',  [
+            'berita' => Berita::where('id', 12)->first()
+        ]);
     }
 
     public function profilePimpinan(): Response
     {
-        return Inertia::render('Profile/ProfilePimpinan');
+        return Inertia::render('Profile/ProfilePimpinan', [
+            'berita' => Berita::where('id', 12)->first()
+        ]);
     }
 
     // public function edit(Request $request): Response

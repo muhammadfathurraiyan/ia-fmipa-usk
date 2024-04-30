@@ -49,7 +49,7 @@ class BeritaController extends Controller
     public function show($id)
     {
         return Inertia::render('Berita/Detail', [
-            'berita' => Berita::where('id', $id)->get(),
+            'berita' => Berita::where('id', $id)->first(),
         ]);
     }
 

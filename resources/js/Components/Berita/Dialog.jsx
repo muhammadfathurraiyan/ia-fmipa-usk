@@ -61,6 +61,7 @@ export default function Dialog({
               >
                 <option value="berita">Berita</option>
                 <option value="loker">Loker</option>
+                <option value="profil">Profil</option>
               </select>
             </div>
             <ImageInput value={data.img} setData={setData} />
@@ -141,6 +142,7 @@ export default function Dialog({
               >
                 <option value="berita">Berita</option>
                 <option value="loker">Loker</option>
+                <option value="profil">Profil</option>
               </select>
             </div>
             <ImageInput value={data.img} setData={setData} />

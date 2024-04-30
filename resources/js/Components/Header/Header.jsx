@@ -1,4 +1,3 @@
-// import Dropdown from "./components/Dropdown";
 import { Link } from "@inertiajs/react";
 import { ChevronDown, Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
@@ -89,7 +88,7 @@ export default function Header({ auth }) {
             </li>
             <li>
               <Link
-                href="/"
+                href={route("database.index")}
                 className="hover:text-red-500 transition-all uppercase"
               >
                 Database
@@ -163,12 +162,12 @@ export default function Header({ auth }) {
           </button>
         </div>
       </header>
-      <Sidebar toggle={toggle} />
+      <Sidebar toggle={toggle} auth={auth} />
     </>
   );
 }
 
-function Sidebar({ toggle }) {
+function Sidebar({ toggle, auth }) {
   return (
     <aside
       className={`${
@@ -178,7 +177,7 @@ function Sidebar({ toggle }) {
       <ul className="p-4">
         <li>
           <Link
-            href="/"
+            href={route("beranda")}
             className="hover:text-red-500 transition-all uppercase"
           >
             Beranda
@@ -194,26 +193,26 @@ function Sidebar({ toggle }) {
           <ul className="ml-4 list-inside list-disc invisible opacity-0 h-0  group-hover:visible group-hover:opacity-100 group-hover:h-[4.5rem] duration-500">
             <li>
               <Link
-                href="/"
+                href={route("sejarah")}
                 className="hover:text-red-500 transition-all uppercase"
               >
-                Profile a
+                sejarah
               </Link>
             </li>
             <li>
               <Link
-                href="/"
+                href={route("struktur-organisasi")}
                 className="hover:text-red-500 transition-all uppercase"
               >
-                Profile a
+                struktur organisasi
               </Link>
             </li>
             <li>
               <Link
-                href="/"
+                href={route("profile-pimpinan")}
                 className="hover:text-red-500 transition-all uppercase"
               >
-                Profile a
+                Profil pimpinan
               </Link>
             </li>
           </ul>
@@ -225,36 +224,28 @@ function Sidebar({ toggle }) {
               <ChevronDown size={14} />
             </span>
           </p>
-          <ul className="ml-4 list-inside list-disc invisible opacity-0 h-0  group-hover:visible group-hover:opacity-100 group-hover:h-[4.5rem] duration-500">
+          <ul className="ml-4 list-inside list-disc invisible opacity-0 h-0  group-hover:visible group-hover:opacity-100 group-hover:h-[3rem] duration-500">
             <li>
               <Link
-                href="/"
+                href={route("ult")}
                 className="hover:text-red-500 transition-all uppercase"
               >
-                layanan a
+                Unit Layanan terpadu
               </Link>
             </li>
             <li>
               <Link
-                href="/"
+                href={route("loker")}
                 className="hover:text-red-500 transition-all uppercase"
               >
-                layanan a
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:text-red-500 transition-all uppercase"
-              >
-                layanan a
+                Lowongan Pekerjaan
               </Link>
             </li>
           </ul>
         </li>
         <li>
           <Link
-            href="/"
+            href={route("database.index")}
             className="hover:text-red-500 transition-all uppercase"
           >
             Database
@@ -262,7 +253,7 @@ function Sidebar({ toggle }) {
         </li>
         <li>
           <Link
-            href="/"
+            href={route("berita.index")}
             className="hover:text-red-500 transition-all uppercase"
           >
             Berita
@@ -270,12 +261,43 @@ function Sidebar({ toggle }) {
         </li>
         <li>
           <Link
-            href="/"
+            href={route("kontak")}
             className="hover:text-red-500 transition-all uppercase"
           >
             Kontak
           </Link>
         </li>
+        {auth.user ? (
+          <>
+            {auth.user.role === "super-admin" && (
+              <Link
+                href={route("admin.index")}
+                className="hover:text-red-500 transition-all uppercase"
+              >
+                Admin
+              </Link>
+            )}
+            <li>
+              <Link
+                href={route("logout")}
+                method="post"
+                as="button"
+                className={buttonClass.primary + " mt-1"}
+              >
+                Logout
+              </Link>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link
+              href={route("login")}
+              className={buttonClass.primary + " mt-1"}
+            >
+              Masuk
+            </Link>
+          </li>
+        )}
       </ul>
     </aside>
   );

@@ -9,10 +9,10 @@ export default function Detail({ auth, berita }) {
       <article className="my-12 lg:w-3/5">
         <h1 className="text-3xl font-bold uppercase">{berita.title}</h1>
         <img src={berita.image} alt="image" className="w-full" />
-        <p className="mt-4 text-lg  whitespace-pre-wrap">{berita.content}</p>
-        <p className={buttonClass.secondary + " w-fit uppercase mt-4"}>
-          {berita.category}
+        <p className="mt-4 text-lg  whitespace-pre-wrap">
+          {berita.content}
         </p>
+        <p className={buttonClass.secondary + " w-fit uppercase mt-4"}>{berita.category}</p>
       </article>
     </Layout>
   );

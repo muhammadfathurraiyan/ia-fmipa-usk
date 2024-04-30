@@ -78,6 +78,7 @@ export default function Table({ berita }) {
         </table>
       </div>
       <Dialog
+      
         isCreate={isCreate}
         setIsCreate={setIsCreate}
         isEdit={isEdit}

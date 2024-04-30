@@ -6,3 +6,15 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
+.reset-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+}
+
+.reset-select::-ms-expand {
+  display: none;
+}

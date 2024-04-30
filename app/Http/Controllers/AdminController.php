@@ -49,6 +49,7 @@ class AdminController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'role' => $request->role,
+                    'password' => Hash::make($request->password),
                 ]
             );
         } else {

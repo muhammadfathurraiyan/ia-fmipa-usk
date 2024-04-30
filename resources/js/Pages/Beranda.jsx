@@ -1,35 +1,36 @@
 import MiniCard from "@/Components/Berita/MiniCard";
-import PrimaryButton from "@/Components/PrimaryButton";
 import { buttonClass } from "@/Components/ui/button";
 import Layout from "@/Layouts/Layout";
 import { Link, Head } from "@inertiajs/react";
 import { ExternalLink } from "lucide-react";
 
-export default function Beranda({ auth, laravelVersion, phpVersion }) {
+export default function Beranda({ auth, berita, phpVersion }) {
   return (
     <Layout auth={auth}>
       <Head title="Beranda" />
 
       <div className="grid lg:grid-cols-2 gap-6 my-8">
-        <div className="relative h-[54.5vh] group">
+        <Link  href={`/berita/${berita[0].id}`} className="relative h-[54.5vh] group">
           <div className="overflow-hidden size-full">
             <img
-              src="https://picsum.photos/900"
+              src={berita[0].image}
               alt=""
               className="h-full min-w-full object-cover group-hover:scale-105 duration-300"
             />
           </div>
-          <div className="p-4 bg-black/60 absolute bottom-0 text-white">
-            <h1 className="text-lg">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit,
-              modi. Voluptate, voluptates velit?
-            </h1>
+          <div className="p-4 bg-black/60 absolute bottom-0 text-white w-full">
+            <h1 className="text-lg">{berita[0].title}</h1>
           </div>
-        </div>
-        <div className="flex flex-col items-start justify-between max-md:gap-6">
-          <MiniCard />
-          <MiniCard />
-          <MiniCard />
+        </Link>
+        <div className="grid gap-4">
+          {berita.slice(1, berita.length).map((berita) => (
+            <MiniCard
+              key={berita.id}
+              id={berita.id}
+              img={berita.image}
+              title={berita.title}
+            />
+          ))}
         </div>
         <article className="space-y-2">
           <h1 className="text-xl font-semibold">
