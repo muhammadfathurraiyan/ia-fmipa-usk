@@ -17,7 +17,7 @@ class AdminController extends Controller
 {
     public function index(): Response
     {
-        $role = Auth::user()->first()->role;
+        $role = Auth::user()->role;
         if($role === 'super-admin'){
             return Inertia::render('Admin/Admin', [
                 'users' => User::latest()->get(),
