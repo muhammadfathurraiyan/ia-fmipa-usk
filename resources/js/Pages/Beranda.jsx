@@ -1,29 +1,21 @@
+import Slider from "@/Components/Beranda/Slider";
 import MiniCard from "@/Components/Berita/MiniCard";
 import { buttonClass } from "@/Components/ui/button";
 import Layout from "@/Layouts/Layout";
 import { Link, Head } from "@inertiajs/react";
 import { ExternalLink } from "lucide-react";
 
-export default function Beranda({ auth, berita, phpVersion }) {
+export default function Beranda({ auth, berita }) {
   return (
     <Layout auth={auth}>
       <Head title="Beranda" />
 
-      <div className="grid lg:grid-cols-2 gap-6 my-8">
-        <Link  href={`/berita/${berita[0].id}`} className="relative h-[54.5vh] group">
-          <div className="overflow-hidden size-full">
-            <img
-              src={berita[0].image}
-              alt=""
-              className="h-full min-w-full object-cover group-hover:scale-105 duration-300"
-            />
-          </div>
-          <div className="p-4 bg-black/60 absolute bottom-0 text-white w-full">
-            <h1 className="text-lg">{berita[0].title}</h1>
-          </div>
-        </Link>
+      <div className="grid lg:grid-cols-2 gap-6 my-12">
+        <div className="relative h-[54.5vh] max-lg:w-[91vw]  flex items-center justify-center group">
+          <Slider data={berita.slice(0, 3)} />
+        </div>
         <div className="grid gap-4">
-          {berita.slice(1, berita.length).map((berita) => (
+          {berita.slice(3, berita.length).map((berita) => (
             <MiniCard
               key={berita.id}
               id={berita.id}

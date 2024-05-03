@@ -18,3 +18,9 @@
 .reset-select::-ms-expand {
   display: none;
 }
+
+.date::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-text {
+  display: none;
+}

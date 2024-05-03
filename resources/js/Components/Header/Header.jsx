@@ -71,12 +71,13 @@ export default function Header({ auth }) {
                   </button>
                 </Dropdown.Trigger>
                 <Dropdown.Content className="rounded-none bg-slate-900">
-                  <Dropdown.Link
-                    href={route("ult")}
-                    className="hover:bg-red-500 text-white uppercase text-sm"
+                  <a
+                    href="https://ult.fmipa.usk.ac.id/layanan_alumni.php"
+                    target="_blank"
+                    className="hover:bg-red-500 text-white uppercase text-sm block w-full px-3 py-1 text-start text-nowrap leading-5 focus:outline-none transition duration-150 ease-in-out"
                   >
                     Unit layanan terpadu
-                  </Dropdown.Link>
+                  </a>
                   <Dropdown.Link
                     href={route("loker")}
                     className="hover:bg-red-500 text-white uppercase text-sm"

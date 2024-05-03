@@ -12,7 +12,7 @@ class BerandaController extends Controller
     public function index(): Response
     {
         return Inertia::render('Beranda', [
-            'berita' => Berita::where('category', 'berita')->latest()->take(4)->get(),
+            'berita' => Berita::where('category', 'berita')->latest()->take(6)->get(),
         ]);
     }
 }
