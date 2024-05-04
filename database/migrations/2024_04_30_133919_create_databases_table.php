@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('databases', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('prodi');
             $table->string('angkatan');
-            $table->string('lulusan');
-            $table->string('telepon');
-            $table->string('email');
-            $table->string('sosmed');
+            $table->string('lulusan')->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('email')->nullable();
+            $table->string('sosmed')->nullable();
             $table->longText('image')->nullable();
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

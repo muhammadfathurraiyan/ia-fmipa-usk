@@ -2,13 +2,15 @@ import { Eye, PencilLine, Trash } from "lucide-react";
 import { useState } from "react";
 import Dialog from "./Dialog";
 import { Link } from "@inertiajs/react";
-import { buttonClass } from "../ui/button";
+import { Button, buttonClass } from "../ui/button";
+import Modal from "../Modal";
 
 export default function Table({ berita }) {
   const [isCreate, setIsCreate] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [id, setId] = useState("");
   const [data, setData] = useState({});
-  console.log(berita);
   return (
     <>
       <button
@@ -62,14 +64,16 @@ export default function Table({ berita }) {
                     >
                       <PencilLine size={22} />
                     </button>
-                    <Link
-                      as="button"
-                      method="delete"
-                      href={`/berita/delete/${berita.id}`}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsDelete(true);
+                        setId(berita.id);
+                      }}
                       className="hover:text-red-600 transition-all"
                     >
                       <Trash size={22} />
-                    </Link>
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -78,13 +82,43 @@ export default function Table({ berita }) {
         </table>
       </div>
       <Dialog
-      
         isCreate={isCreate}
         setIsCreate={setIsCreate}
         isEdit={isEdit}
         setIsEdit={setIsEdit}
         berita={data}
       />
+      <Modal
+        closeable
+        maxWidth="sm"
+        show={isDelete}
+        onClose={() => setIsDelete(false)}
+      >
+        <div className="p-4">
+          <h2 className="text-lg font-bold">
+            Apakah anda yakin ingin menghapus data ini?
+          </h2>
+          <div className="flex justify-end mt-4 gap-2">
+            <Button
+              type="button"
+              onClick={() => setIsDelete(false)}
+              variants={"secondary"}
+              className={" rounded"}
+            >
+              Batal
+            </Button>
+            <Link
+              as="button"
+              method="delete"
+              href={`/berita/delete/${id}`}
+              className={buttonClass.primary} 
+              onClick={() => setIsDelete(false)}
+            >
+              Hapus
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

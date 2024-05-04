@@ -52,7 +52,7 @@ export default function Selectoption({ setDatabase, database }) {
         onChange={(e) => handleJurursan(e)}
         className="border-none focus:ring-0 text-sm"
       >
-        <option value="">Jurusan</option>
+        <option value="w">Jurusan</option>
         <option value="informatika">Informatika</option>
         <option value="matematika">Matematika</option>
         <option value="fisika">Fisika</option>

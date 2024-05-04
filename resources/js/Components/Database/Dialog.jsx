@@ -2,6 +2,7 @@ import Modal from "../Modal";
 import ImageInput, { Input, InputError } from "../ui/input";
 import { Button, buttonClass } from "../ui/button";
 import { Link, useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function Dialog({
   isCreate,
@@ -65,7 +66,6 @@ export default function Dialog({
                     type="text"
                     value={data.title}
                     onChange={(e) => setData("title", e.target.value)}
-                    required
                   />
                   <InputError message={errors.name} className="mt-2" />
                 </div>
@@ -80,7 +80,9 @@ export default function Dialog({
                     className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.prodi}
                     onChange={(e) => setData("prodi", e.target.value)}
+                    required
                   >
+                    <option value="">Pilih Jurusan</option>
                     <option value="Informatika">Informatika</option>
                     <option value="Manajemen Informatika">
                       Manajemen Informatika
@@ -114,7 +116,6 @@ export default function Dialog({
                     type="text"
                     value={data.lulusan}
                     onChange={(e) => setData("lulusan", e.target.value)}
-                    required
                   />
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
@@ -130,7 +131,6 @@ export default function Dialog({
                     type="text"
                     value={data.telepon}
                     onChange={(e) => setData("telepon", e.target.value)}
-                    required
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
@@ -144,7 +144,6 @@ export default function Dialog({
                     type="text"
                     value={data.email}
                     onChange={(e) => setData("email", e.target.value)}
-                    required
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
@@ -158,7 +157,6 @@ export default function Dialog({
                     type="text"
                     value={data.sosmed}
                     onChange={(e) => setData("sosmed", e.target.value)}
-                    required
                   />
                   <InputError message={errors.sosmed} className="mt-2" />
                 </div>
@@ -190,6 +188,7 @@ export default function Dialog({
   }
 
   if (isEdit) {
+    const [isDelete, setIsDelete] = useState(false);
     const { data, setData, patch, processing, errors, reset } = useForm({
       name: database.name,
       title: database.title,
@@ -245,7 +244,6 @@ export default function Dialog({
                     type="text"
                     value={data.title}
                     onChange={(e) => setData("title", e.target.value)}
-                    required
                   />
                   <InputError message={errors.name} className="mt-2" />
                 </div>
@@ -260,6 +258,7 @@ export default function Dialog({
                     className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.prodi}
                     onChange={(e) => setData("prodi", e.target.value)}
+                    required
                   >
                     <option value="Informatika">Informatika</option>
                     <option value="Manajemen Informatika">
@@ -294,7 +293,6 @@ export default function Dialog({
                     type="text"
                     value={data.lulusan}
                     onChange={(e) => setData("lulusan", e.target.value)}
-                    required
                   />
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
@@ -310,7 +308,6 @@ export default function Dialog({
                     type="text"
                     value={data.telepon}
                     onChange={(e) => setData("telepon", e.target.value)}
-                    required
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
@@ -324,7 +321,6 @@ export default function Dialog({
                     type="text"
                     value={data.email}
                     onChange={(e) => setData("email", e.target.value)}
-                    required
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
@@ -338,7 +334,6 @@ export default function Dialog({
                     type="text"
                     value={data.sosmed}
                     onChange={(e) => setData("sosmed", e.target.value)}
-                    required
                   />
                   <InputError message={errors.sosmed} className="mt-2" />
                 </div>
@@ -359,15 +354,51 @@ export default function Dialog({
               </div>
             </div>
             <div className="flex justify-end mt-4 gap-2">
-              <Link
-                as="button"
-                method="delete"
-                href={`/database/delete/${data.id}`}
-                className={buttonClass.primary + " rounded-none"}
+              <Button
+                type="button"
+                onClick={() => {
+                  console.log({ isDelete });
+                  setIsDelete(true);
+                }}
+                variants={"primary"}
               >
                 Hapus
-              </Link>
-              <Button variants={"secondary"} disabled={processing}>
+              </Button>
+              <Modal
+                closeable
+                maxWidth="sm"
+                show={isDelete}
+                onClose={() => setIsDelete(false)}
+              >
+                <div className="p-4">
+                  <h2 className="text-lg font-bold">
+                    Apakah anda yakin ingin menghapus data ini?
+                  </h2>
+                  <div className="flex justify-end mt-4 gap-2">
+                    <Button
+                      type="button"
+                      onClick={() => setIsDelete(false)}
+                      variants={"secondary"}
+                      className={" rounded"}
+                    >
+                      Batal
+                    </Button>
+                    <Link
+                      as="button"
+                      method="delete"
+                      href={`/database/delete/${data.id}`}
+                      className={buttonClass.primary}
+                    >
+                      Hapus
+                    </Link>
+                  </div>
+                </div>
+              </Modal>
+              <Button
+                variants={"secondary"}
+                className={" rounded"}
+                disabled={processing}
+              >
                 Edit
               </Button>
             </div>

@@ -98,6 +98,6 @@ class DatabaseController extends Controller
     {
         $database = Database::where('id', $id)->first();
         $database->delete();
-        return redirect(route('berita.index'));
+        return redirect(route('database.index'));
     }
 }

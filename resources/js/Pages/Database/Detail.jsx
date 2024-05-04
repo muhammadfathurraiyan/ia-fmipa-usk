@@ -4,6 +4,7 @@ import Layout from "@/Layouts/Layout";
 import { Head } from "@inertiajs/react";
 import { PenLine } from "lucide-react";
 import { useState } from "react";
+import Profile from "../../../../public/img/profile.jpg";
 
 export default function Detail({ auth, data }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -14,9 +15,9 @@ export default function Detail({ auth, data }) {
         <article className="my-12 flex max-lg:flex-col gap-4 lg:gap-8">
           <div className="h-[65vh] w-[30vw] max-lg:w-full">
             <img
-              src={data.image}
+              src={data.image ?? Profile}
               alt="image"
-              className="min-h-full w-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
           <div className="w-full">
@@ -34,7 +35,7 @@ export default function Detail({ auth, data }) {
               </button>
             </div>
             <p className="italic text-2xl font-light">
-              {"(" + data.title + ")"}
+              {"(" + data.title ? data.title : "" + ")"}
             </p>
 
             <div className="text-2xl my-2 -space-y-1">
@@ -65,7 +66,7 @@ export default function Detail({ auth, data }) {
       <article className="my-12 flex max-lg:flex-col gap-4 lg:gap-8">
         <div className="h-[65vh] w-[30vw] max-lg:w-full">
           <img
-            src={data.image}
+            src={data.image ?? Profile}
             alt="image"
             className="min-h-full w-full object-cover"
           />

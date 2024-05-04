@@ -5,11 +5,14 @@ export const buttonClass = {
     "bg-yellow-500 py-1 px-3 font-medium transition-all text-neutral-950 hover:bg-yellow-600",
 };
 
-export function Button({ children, variants, disabled }) {
+export function Button({ children, variants, disabled, className, ...props }) {
   const variant = buttonClass;
   return (
     <button
-      className={`${variant[variants]} ${disabled && "opacity-25"}`}
+      {...props}
+      className={`${variant[variants]} ${
+        disabled && "opacity-25"
+      } ${className}`}
       disabled={disabled}
     >
       {children}
