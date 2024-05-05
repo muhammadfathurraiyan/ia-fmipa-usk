@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('lulusan')->nullable();
             $table->string('telepon')->nullable();
             $table->string('email')->nullable();
-            $table->string('sosmed')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('other')->nullable();
             $table->longText('image')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();

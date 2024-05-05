@@ -40,7 +40,10 @@ class DatabaseController extends Controller
         $database->lulusan = $request->lulusan;
         $database->telepon = $request->telepon;
         $database->email = $request->email;
-        $database->sosmed = $request->sosmed;
+        $database->instagram = $request->instagram;
+        $database->linkedin = $request->linkedin;
+        $database->twitter = $request->twitter;
+        $database->other = $request->other;
         $database->image = $request->img;
         $database->description = $request->description;
 
@@ -82,7 +85,10 @@ class DatabaseController extends Controller
                 'lulusan' => $request->lulusan,
                 'telepon' => $request->telepon,
                 'email' => $request->email,
-                'sosmed' => $request->sosmed,
+                'instagram' => $request->instagram,
+                'linkedin' => $request->linkedin,
+                'twitter' => $request->twitter,
+                'other' => $request->other,
                 'image' => $request->img,
                 'description' => $request->description,
             ]

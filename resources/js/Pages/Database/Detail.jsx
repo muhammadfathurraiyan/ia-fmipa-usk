@@ -48,6 +48,10 @@ export default function Detail({ auth, data }) {
               <p>Telepon: {data.telepon}</p>
               <p>Email: {data.email}</p>
               <p>Sosial Media: {data.sosmed}</p>
+              <p>Instagram: {data.instagram}</p>
+              <p>Linkedin: {data.linkedin}</p>
+              <p>Twitter: {data.twitter}</p>
+              <p>Lainya: {data.other}</p>
             </div>
 
             <div className="text-lg font-light mt-2 -space-y-1">

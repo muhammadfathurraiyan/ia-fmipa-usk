@@ -20,7 +20,10 @@ export default function Dialog({
       lulusan: "",
       telepon: "",
       email: "",
-      sosmed: "",
+      instagram: "",
+      linkedin: "",
+      twitter: "",
+      other: "",
       description: "",
       img: "",
     });
@@ -119,8 +122,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="telepon" className="text-xs font-medium">
                     Telepon
@@ -134,6 +135,8 @@ export default function Dialog({
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="email" className="text-xs font-medium">
                     Email
@@ -148,17 +151,56 @@ export default function Dialog({
                   <InputError message={errors.email} className="mt-2" />
                 </div>
                 <div>
-                  <label htmlFor="sosmed" className="text-xs font-medium">
-                    Sosial Media
+                  <label htmlFor="instagram" className="text-xs font-medium">
+                    Instagram
                   </label>
                   <Input
-                    id="sosmed"
-                    name="sosmed"
+                    id="instagram"
+                    name="instagram"
                     type="text"
-                    value={data.sosmed}
-                    onChange={(e) => setData("sosmed", e.target.value)}
+                    value={data.instagram}
+                    onChange={(e) => setData("instagram", e.target.value)}
                   />
-                  <InputError message={errors.sosmed} className="mt-2" />
+                  <InputError message={errors.instagram} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="linkedin" className="text-xs font-medium">
+                    Linkedin
+                  </label>
+                  <Input
+                    id="linkedin"
+                    name="linkedin"
+                    type="text"
+                    value={data.linkedin}
+                    onChange={(e) => setData("linkedin", e.target.value)}
+                  />
+                  <InputError message={errors.linkedin} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="twitter" className="text-xs font-medium">
+                    Twitter
+                  </label>
+                  <Input
+                    id="twitter"
+                    name="twitter"
+                    type="text"
+                    value={data.twitter}
+                    onChange={(e) => setData("twitter", e.target.value)}
+                  />
+                  <InputError message={errors.twitter} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="other" className="text-xs font-medium">
+                    Lainya
+                  </label>
+                  <Input
+                    id="other"
+                    name="other"
+                    type="text"
+                    value={data.other}
+                    onChange={(e) => setData("other", e.target.value)}
+                  />
+                  <InputError message={errors.other} className="mt-2" />
                 </div>
                 <div>
                   <label htmlFor="description" className="text-xs font-medium">
@@ -197,7 +239,10 @@ export default function Dialog({
       lulusan: database.lulusan,
       telepon: database.telepon,
       email: database.email,
-      sosmed: database.sosmed,
+      instagram: database.instagram,
+      linkedin: database.linkedin,
+      twitter: database.twitter,
+      other: database.email,
       description: database.description,
       img: database.image,
       id: database.id,
@@ -296,8 +341,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="telepon" className="text-xs font-medium">
                     Telepon
@@ -311,6 +354,8 @@ export default function Dialog({
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="email" className="text-xs font-medium">
                     Email
@@ -325,17 +370,56 @@ export default function Dialog({
                   <InputError message={errors.email} className="mt-2" />
                 </div>
                 <div>
-                  <label htmlFor="sosmed" className="text-xs font-medium">
-                    Sosial Media
+                  <label htmlFor="instagram" className="text-xs font-medium">
+                    Instagram
                   </label>
                   <Input
-                    id="sosmed"
-                    name="sosmed"
+                    id="instagram"
+                    name="instagram"
                     type="text"
-                    value={data.sosmed}
-                    onChange={(e) => setData("sosmed", e.target.value)}
+                    value={data.instagram}
+                    onChange={(e) => setData("instagram", e.target.value)}
                   />
-                  <InputError message={errors.sosmed} className="mt-2" />
+                  <InputError message={errors.instagram} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="linkedin" className="text-xs font-medium">
+                    Linkedin
+                  </label>
+                  <Input
+                    id="linkedin"
+                    name="linkedin"
+                    type="text"
+                    value={data.linkedin}
+                    onChange={(e) => setData("linkedin", e.target.value)}
+                  />
+                  <InputError message={errors.linkedin} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="twitter" className="text-xs font-medium">
+                    Twitter
+                  </label>
+                  <Input
+                    id="twitter"
+                    name="twitter"
+                    type="text"
+                    value={data.twitter}
+                    onChange={(e) => setData("twitter", e.target.value)}
+                  />
+                  <InputError message={errors.twitter} className="mt-2" />
+                </div>
+                <div>
+                  <label htmlFor="other" className="text-xs font-medium">
+                    Lainya
+                  </label>
+                  <Input
+                    id="other"
+                    name="other"
+                    type="text"
+                    value={data.other}
+                    onChange={(e) => setData("other", e.target.value)}
+                  />
+                  <InputError message={errors.other} className="mt-2" />
                 </div>
                 <div>
                   <label htmlFor="description" className="text-xs font-medium">
