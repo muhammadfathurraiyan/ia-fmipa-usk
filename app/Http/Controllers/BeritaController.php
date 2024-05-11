@@ -50,6 +50,7 @@ class BeritaController extends Controller
     {
         return Inertia::render('Berita/Detail', [
             'berita' => Berita::where('id', $id)->first(),
+            'beritaTerbaru' => Berita::whereNotIn('id', [$id])->latest()->latest()->take(6)->get(),
         ]);
     }
 

@@ -30,7 +30,8 @@ class LayananController extends Controller
     public function show($id)
     {
         return Inertia::render('Layanan/Detail', [
-            'berita' => Berita::where('id', $id)->first(),
+            'loker' => Berita::where('id', $id)->first(),
+            'lokerTerbaru' => Berita::whereNotIn('id', [$id])->where('category', 'loker')->latest()->latest()->take(6)->get(),
         ]);
     }
 }

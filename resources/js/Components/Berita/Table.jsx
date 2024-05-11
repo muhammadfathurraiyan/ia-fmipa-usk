@@ -26,7 +26,7 @@ export default function Table({ berita }) {
             <tr>
               <th className="p-3">No</th>
               <th className="p-3">Judul</th>
-              <th className="p-3">ID</th>
+              {/* <th className="p-3">ID</th> */}
               <th className="p-3">Kategori</th>
               <th className="p-3">Konten</th>
               <th className="p-3">Tanggal</th>
@@ -37,11 +37,13 @@ export default function Table({ berita }) {
             {berita?.map((berita, index) => (
               <tr key={berita.id} className="border-b border-neutral-400">
                 <td className="p-3">{index + 1}</td>
-                <td className="p-3">{berita.title}</td>
-                <td className="p-3">{berita.id}</td>
+                <td className="p-3 flex items-center justify-center">
+                  <p className="line-clamp-3  w-[300px] text-justify font-bold">{berita.title}</p>
+                </td>
+                {/* <td className="p-3">{berita.id}</td> */}
                 <td className="p-3">{berita.category}</td>
                 <td className="p-3 flex items-center justify-center">
-                  <p className="line-clamp-3  w-[300px]">{berita.content}</p>
+                  <p className="line-clamp-3  w-[300px] text-justify">{berita.content}</p>
                 </td>
                 <td className="p-3">
                   {new Date(berita.updated_at).toDateString()}

@@ -1,18 +1,29 @@
-import { buttonClass } from "@/Components/ui/button";
 import Layout from "@/Layouts/Layout";
 import { Head } from "@inertiajs/react";
 
-export default function Detail({ auth, berita }) {
+export default function Detail({ auth, loker, lokerTerbaru }) {
   return (
     <Layout auth={auth}>
-      <Head title={berita.title} />
-      <article className="my-12 lg:w-3/5">
-        <h1 className="text-3xl font-bold uppercase">{berita.title}</h1>
-        <img src={berita.image} alt="image" className="w-full" />
-        <p className="mt-4 text-lg  whitespace-pre-wrap">
-          {berita.content}
-        </p>
-        <p className={buttonClass.secondary + " w-fit uppercase mt-4"}>{berita.category}</p>
+      <Head title={loker.title} />
+      <h1 className="text-3xl font-bold mt-12 mb-8">{loker.title}</h1>
+      <article className="mb-12 grid grid-cols-5 gap-20">
+        <div className="col-span-3 max-lg:col-span-5">
+          <img src={loker.image} alt="image" className="w-full" />
+          <p className="mt-4 text-lg  whitespace-pre-wrap text-justify">
+            {loker.content}
+          </p>
+        </div>
+        <div className="col-span-2 max-lg:col-span-5 space-y-2">
+          <h1 className="text-xl font-bold">Loker Lainnya</h1>
+          {lokerTerbaru.map((loker) => (
+            <MiniCard
+              id={loker.id}
+              img={loker.image}
+              title={loker.title}
+              key={loker.id}
+            />
+          ))}
+        </div>
       </article>
     </Layout>
   );

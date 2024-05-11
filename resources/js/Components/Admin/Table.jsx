@@ -24,7 +24,7 @@ export default function Table({ users }) {
               <th className="p-3">No</th>
               <th className="p-3">Nama</th>
               <th className="p-3">Email</th>
-              <th className="p-3">ID</th>
+              {/* <th className="p-3">ID</th> */}
               <th className="p-3">Roles</th>
               <th className="p-3">Tanggal</th>
               <th className="p-3">Aksi</th>
@@ -36,7 +36,7 @@ export default function Table({ users }) {
                 <td className="p-3">{index + 1}</td>
                 <td className="p-3">{user.name}</td>
                 <td className="p-3">{user.email}</td>
-                <td className="p-3">{user.id}</td>
+                {/* <td className="p-3">{user.id}</td> */}
                 <td className="p-3">{user.role}</td>
                 <td className="p-3">
                   {new Date(user.updated_at).toDateString()}

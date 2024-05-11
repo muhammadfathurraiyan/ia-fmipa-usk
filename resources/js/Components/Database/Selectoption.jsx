@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 export default function Selectoption({ setDatabase, database }) {
   const [defaultData, setDefaultData] = useState();
   const dateArray = [];
-  for (let i = 1961; i <= 2024; i++) {
+  for (let i = 1989; i <= 2030; i++) {
     dateArray.push(i);
   }
 
@@ -12,8 +12,8 @@ export default function Selectoption({ setDatabase, database }) {
     if (searchText === "") {
       setDatabase(defaultData);
     } else {
-      const filteredResults = defaultData.filter((item) =>
-        item.prodi.toLowerCase() === searchText
+      const filteredResults = defaultData.filter(
+        (item) => item.prodi.toLowerCase() === searchText
       );
       setDatabase(filteredResults);
     }
@@ -47,21 +47,30 @@ export default function Selectoption({ setDatabase, database }) {
     setDefaultData(database);
   }, []);
   return (
-    <div className="flex justify-end mt-2">
+    <div className="flex justify-end mt-2 gap-2">
       <select
         onChange={(e) => handleJurursan(e)}
-        className="border-none focus:ring-0 text-sm"
+        className="border border-neutral-500 w-[140px] p-0 px-1 rounded focus:ring-0 text-[10px]"
       >
-        <option value="w">Jurusan</option>
-        <option value="informatika">Informatika</option>
-        <option value="matematika">Matematika</option>
-        <option value="fisika">Fisika</option>
-        <option value="statistika">Statistika</option>
+        <option value="" className="pr-2">Pilih Jurusan</option>
+        <option value="D3 Teknik Elektronika">D3 Teknik Elektronika</option>
+        <option value="D3 Manajemen Informatika">
+          D3 Manajemen Informatika
+        </option>
+        <option value="Biologi">Biologi</option>
+        <option value="Farmasi">Farmasi</option>
+        <option value="Kimia">Kimia</option>
+        <option value="Informatika">Informatika</option>
+        <option value="Matematika">Matematika</option>
+        <option value="Fisika">Fisika</option>
+        <option value="Statistika">Statistika</option>
+        <option value="S2 Biologi">S2 Biologi</option>
+        <option value="S2 Fisika">S2 Fisika</option>
       </select>
 
       <select
         onChange={(e) => handleAngkatan(e)}
-        className="border-none focus:ring-0 text-sm"
+         className="border border-neutral-500 w-[140px] p-0 px-1 rounded focus:ring-0 text-[10px]"
       >
         <option value="">Tahun Angkatan</option>
         {dateArray
@@ -73,7 +82,7 @@ export default function Selectoption({ setDatabase, database }) {
 
       <select
         onChange={handleLulusan}
-        className="border-none focus:ring-0 text-sm"
+         className="border border-neutral-500 w-[140px] p-0 px-1 rounded focus:ring-0 text-[10px]"
       >
         <option value="">Tahun Lulusan</option>
         {dateArray

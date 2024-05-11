@@ -42,6 +42,7 @@ export default function Detail({ auth, data }) {
               <p>Program Studi {data.prodi}</p>
               <p>Angkatan tahun {data.angkatan}</p>
               <p>Lulusan tahun {data.lulusan}</p>
+              <p>Lulusan NPM {data.npm}</p>
             </div>
 
             <div className="text-lg font-light -space-y-1">

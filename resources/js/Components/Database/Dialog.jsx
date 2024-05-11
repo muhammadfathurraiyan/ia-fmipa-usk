@@ -12,8 +12,13 @@ export default function Dialog({
   database,
 }) {
   if (isCreate) {
+    const dateArray = [];
+    for (let i = 1989; i <= 2030; i++) {
+      dateArray.push(i);
+    }
     const { data, setData, post, processing, errors, reset } = useForm({
       name: "",
+      npm: "",
       title: "",
       prodi: "",
       angkatan: "",
@@ -36,14 +41,14 @@ export default function Dialog({
     return (
       <Modal
         closeable
-        maxWidth="2xl"
+        maxWidth="3xl"
         show={isCreate}
         onClose={() => setIsCreate(false)}
       >
         <div className="relative p-4">
           <form onSubmit={submit}>
             <h2 className="font-semibold text-xl">Form Tambah Alumni</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <div>
                   <label htmlFor="name" className="text-xs font-medium">
@@ -60,6 +65,19 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <div>
+                  <label htmlFor="npm" className="text-xs font-medium">
+                    NPM
+                  </label>
+                  <Input
+                    id="npm"
+                    name="npm"
+                    type="number"
+                    value={data.npm}
+                    onChange={(e) => setData("npm", e.target.value)}
+                  />
+                  <InputError message={errors.npm} className="mt-2" />
+                </div>
+                <div>
                   <label htmlFor="title" className="text-xs font-medium">
                     Gelar
                   </label>
@@ -73,6 +91,8 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <ImageInput value={data.img} setData={setData} />
+              </div>
+              <div>
                 <div>
                   <label htmlFor="prodi" className="text-xs font-medium">
                     Program Studi
@@ -86,40 +106,64 @@ export default function Dialog({
                     required
                   >
                     <option value="">Pilih Jurusan</option>
-                    <option value="Informatika">Informatika</option>
-                    <option value="Manajemen Informatika">
-                      Manajemen Informatika
+                    <option value="D3 Teknik Elektronika">
+                      D3 Teknik Elektronika
                     </option>
+                    <option value="D3 Manajemen Informatika">
+                      D3 Manajemen Informatika
+                    </option>
+                    <option value="Biologi">Biologi</option>
+                    <option value="Farmasi">Farmasi</option>
+                    <option value="Kimia">Kimia</option>
+                    <option value="Informatika">Informatika</option>
                     <option value="Matematika">Matematika</option>
                     <option value="Fisika">Fisika</option>
                     <option value="Statistika">Statistika</option>
+                    <option value="S2 Biologi">S2 Biologi</option>
+                    <option value="S2 Fisika">S2 Fisika</option>
                   </select>
                 </div>
                 <div>
                   <label htmlFor="angkatan" className="text-xs font-medium">
                     Angkatan
                   </label>
-                  <Input
+                  <select
                     id="angkatan"
                     name="angkatan"
                     type="text"
+                    className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.angkatan}
                     onChange={(e) => setData("angkatan", e.target.value)}
                     required
-                  />
+                  >
+                    <option value="">Pilih Angkatan</option>
+                    {dateArray.map((date) => (
+                      <option key={date} value={date}>
+                        {date}
+                      </option>
+                    ))}
+                  </select>
                   <InputError message={errors.angkatan} className="mt-2" />
                 </div>
                 <div>
                   <label htmlFor="lulusan" className="text-xs font-medium">
                     Lulusan
                   </label>
-                  <Input
+                  <select
                     id="lulusan"
                     name="lulusan"
                     type="text"
+                    className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.lulusan}
                     onChange={(e) => setData("lulusan", e.target.value)}
-                  />
+                  >
+                    <option value="">Pilih Tahun Lulusan</option>
+                    {dateArray.map((date) => (
+                      <option key={date} value={date}>
+                        {date}
+                      </option>
+                    ))}
+                  </select>
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
                 <div>
@@ -135,8 +179,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="email" className="text-xs font-medium">
                     Email
@@ -150,6 +192,8 @@ export default function Dialog({
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="instagram" className="text-xs font-medium">
                     Instagram
@@ -230,9 +274,14 @@ export default function Dialog({
   }
 
   if (isEdit) {
+    const dateArray = [];
+    for (let i = 1989; i <= 2030; i++) {
+      dateArray.push(i);
+    }
     const [isDelete, setIsDelete] = useState(false);
     const { data, setData, patch, processing, errors, reset } = useForm({
       name: database.name,
+      npm: database.npm,
       title: database.title,
       prodi: database.prodi,
       angkatan: database.angkatan,
@@ -263,7 +312,7 @@ export default function Dialog({
         <div className="relative p-4">
           <form onSubmit={submit}>
             <h2 className="font-semibold text-xl">Form Edit Alumni</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <div>
                   <label htmlFor="name" className="text-xs font-medium">
@@ -280,6 +329,19 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <div>
+                  <label htmlFor="npm" className="text-xs font-medium">
+                    NPM
+                  </label>
+                  <Input
+                    id="npm"
+                    name="npm"
+                    type="number"
+                    value={data.npm}
+                    onChange={(e) => setData("npm", e.target.value)}
+                  />
+                  <InputError message={errors.npm} className="mt-2" />
+                </div>
+                <div>
                   <label htmlFor="title" className="text-xs font-medium">
                     Gelar
                   </label>
@@ -293,6 +355,8 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <ImageInput value={data.img} setData={setData} />
+              </div>
+              <div>
                 <div>
                   <label htmlFor="prodi" className="text-xs font-medium">
                     Program Studi
@@ -305,40 +369,65 @@ export default function Dialog({
                     onChange={(e) => setData("prodi", e.target.value)}
                     required
                   >
-                    <option value="Informatika">Informatika</option>
-                    <option value="Manajemen Informatika">
-                      Manajemen Informatika
+                    <option value="">Pilih Jurusan</option>
+                    <option value="D3 Teknik Elektronika">
+                      D3 Teknik Elektronika
                     </option>
+                    <option value="D3 Manajemen Informatika">
+                      D3 Manajemen Informatika
+                    </option>
+                    <option value="Biologi">Biologi</option>
+                    <option value="Farmasi">Farmasi</option>
+                    <option value="Kimia">Kimia</option>
+                    <option value="Informatika">Informatika</option>
                     <option value="Matematika">Matematika</option>
                     <option value="Fisika">Fisika</option>
                     <option value="Statistika">Statistika</option>
+                    <option value="S2 Biologi">S2 Biologi</option>
+                    <option value="S2 Fisika">S2 Fisika</option>
                   </select>
                 </div>
                 <div>
                   <label htmlFor="angkatan" className="text-xs font-medium">
                     Angkatan
                   </label>
-                  <Input
+                  <select
                     id="angkatan"
                     name="angkatan"
                     type="text"
+                    className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.angkatan}
                     onChange={(e) => setData("angkatan", e.target.value)}
                     required
-                  />
+                  >
+                    <option value="">Pilih Angkatan</option>
+                    {dateArray.map((date) => (
+                      <option key={date} value={date}>
+                        {date}
+                      </option>
+                    ))}
+                  </select>
                   <InputError message={errors.angkatan} className="mt-2" />
                 </div>
                 <div>
                   <label htmlFor="lulusan" className="text-xs font-medium">
                     Lulusan
                   </label>
-                  <Input
+                  <select
                     id="lulusan"
                     name="lulusan"
                     type="text"
+                    className="text-neutral-950 focus:border-sky-900 rounded py-1 px-3 w-full border-neutral-500"
                     value={data.lulusan}
                     onChange={(e) => setData("lulusan", e.target.value)}
-                  />
+                  >
+                    <option value="">Pilih Tahun Lulusan</option>
+                    {dateArray.map((date) => (
+                      <option key={date} value={date}>
+                        {date}
+                      </option>
+                    ))}
+                  </select>
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
                 <div>
@@ -354,8 +443,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.telepon} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="email" className="text-xs font-medium">
                     Email
@@ -369,6 +456,8 @@ export default function Dialog({
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="instagram" className="text-xs font-medium">
                     Instagram

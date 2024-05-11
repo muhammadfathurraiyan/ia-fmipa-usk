@@ -34,6 +34,7 @@ class DatabaseController extends Controller
     {
         $database = new Database;
         $database->name = $request->name;
+        $database->npm = $request->npm;
         $database->title = $request->title;
         $database->prodi = $request->prodi;
         $database->angkatan = $request->angkatan;
@@ -79,6 +80,7 @@ class DatabaseController extends Controller
         $database->update(
             [
                 'name' => $request->name,
+                'npm' => $request->npm,
                 'title' => $request->title,
                 'prodi' => $request->prodi,
                 'angkatan' => $request->angkatan,

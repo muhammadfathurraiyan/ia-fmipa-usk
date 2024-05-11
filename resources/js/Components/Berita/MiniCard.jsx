@@ -10,7 +10,7 @@ export default function MiniCard({ id, img, title }) {
           className="size-full object-cover group-hover:scale-105 duration-300"
         />
       </div>
-      <p className="w-3/4">{title}</p>
+      <p className="w-3/4 line-clamp-2 group-hover:text-red-400">{title}</p>
     </Link>
   );
 }

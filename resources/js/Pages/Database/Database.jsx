@@ -25,32 +25,10 @@ export default function Database({ auth, data }) {
             >
               <Plus size={14} /> Alumni
             </button>
-            <div>
-              <select className="border-none focus:ring-0 text-sm">
-                <option value="1">Jurusan</option>
-                <option value="informatika">Informatika</option>
-                <option value="matematika">Matematika</option>
-                <option value="fisika">Fisika</option>
-                <option value="statistika">Statistika</option>
-              </select>
-              <select
-                defaultValue="1"
-                className="border-none focus:ring-0 text-sm"
-              >
-                <option value="1">Tahun Angkatan</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-              </select>
-              <select className="border-none focus:ring-0 text-sm">
-                <option value="1">Tahun Lulusan</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-              </select>
-            </div>
+            <Selectoption
+              database={database}
+              setDatabase={setDatabase}
+            />
           </div>
           <div className="grid grid-cols-6 gap-4 mt-4 max-lg:grid-cols-3">
             {database.map((data) => (

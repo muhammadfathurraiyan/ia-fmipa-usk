@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('other')->nullable();
             $table->longText('image')->nullable();
             $table->longText('description')->nullable();
+            $table->string('npm')->nullable();
             $table->timestamps();
         });
     }
