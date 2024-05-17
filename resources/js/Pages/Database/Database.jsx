@@ -4,12 +4,13 @@ import Searchbox from "@/Components/Database/Searchbox";
 import Selectoption from "@/Components/Database/Selectoption";
 import { buttonClass } from "@/Components/ui/button";
 import Layout from "@/Layouts/Layout";
-import { Head, Link } from "@inertiajs/react";
-import { Plus } from "lucide-react";
+import { Head } from "@inertiajs/react";
+import { CloudUpload, Plus } from "lucide-react";
 import React, { useState } from "react";
 
 export default function Database({ auth, data }) {
   const [isCreate, setIsCreate] = useState(false);
+  const [isImport, setIsImport] = useState(false);
   const [database, setDatabase] = useState(data);
   if (auth.user) {
     return (
@@ -18,17 +19,23 @@ export default function Database({ auth, data }) {
         <section className="my-12">
           <Searchbox database={database} setDatabase={setDatabase} />
           <div className="flex justify-between items-center mt-2">
-            <button
-              type="button"
-              onClick={() => setIsCreate(true)}
-              className={buttonClass.primary + " flex items-center gap-1"}
-            >
-              <Plus size={14} /> Alumni
-            </button>
-            <Selectoption
-              database={database}
-              setDatabase={setDatabase}
-            />
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => setIsCreate(true)}
+                className={buttonClass.primary + " flex items-center gap-1"}
+              >
+                <Plus size={14} /> Alumni
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsImport(true)}
+                className={buttonClass.primary + " flex items-center gap-1"}
+              >
+                <CloudUpload size={14} /> Import CSV
+              </button>
+            </div>
+            <Selectoption database={database} setDatabase={setDatabase} />
           </div>
           <div className="grid grid-cols-6 gap-4 mt-4 max-lg:grid-cols-3">
             {database.map((data) => (
@@ -44,7 +51,7 @@ export default function Database({ auth, data }) {
             ))}
           </div>
         </section>
-        <Dialog isCreate={isCreate} setIsCreate={setIsCreate} />
+        <Dialog isCreate={isCreate} setIsCreate={setIsCreate} isImport={isImport} setIsImport={setIsImport} />
       </Layout>
     );
   }

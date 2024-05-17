@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Database;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
+use App\Imports\DatabasesImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseController extends Controller
 {
@@ -22,9 +23,11 @@ class DatabaseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function import(Request $request)
     {
-        //
+        $file = $request->file("file");
+        Excel::import(new DatabasesImport, $file);
+        return redirect()->route('database.index');
     }
 
     /**

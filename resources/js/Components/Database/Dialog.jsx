@@ -7,6 +7,8 @@ import { useState } from "react";
 export default function Dialog({
   isCreate,
   setIsCreate,
+  isImport,
+  setIsImport,
   setIsEdit,
   isEdit,
   database,
@@ -265,6 +267,52 @@ export default function Dialog({
             <div className="flex justify-end mt-4">
               <Button variants={"secondary"} disabled={processing}>
                 Tambah
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    );
+  }
+
+  if (isImport) {
+    const { setData, post, processing } = useForm({
+      file: null,
+    });
+
+    const submit = (e) => {
+      e.preventDefault();
+      post(route("database.import"));
+      setIsImport(false);
+    };
+    return (
+      <Modal
+        closeable
+        maxWidth="md"
+        show={isImport}
+        onClose={() => setIsImport(false)}
+      >
+        <div className="relative p-4">
+          <form onSubmit={submit} encType="multipart/form-data">
+            <h2 className="font-semibold text-xl">Form Import Data Alumni</h2>
+            <div className="grid">
+              <label htmlFor="file" className="text-xs font-medium">
+                File CSV
+              </label>
+              <div className="border border-neutral-500 rounded">
+                <Input
+                  id="file"
+                  name="file"
+                  type="file"
+                  accept=".csv"
+                  onChange={(e) => setData("file", e.target.files[0])}
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex justify-end mt-4">
+              <Button variants={"secondary"} disabled={processing}>
+                Import
               </Button>
             </div>
           </form>

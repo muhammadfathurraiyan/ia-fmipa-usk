@@ -40,17 +40,18 @@ Route::get('/database/{id}', [DatabaseController::class, 'show'])->name('databas
 
 
 Route::middleware('auth')->group(function () {
-    Route::post('database', [DatabaseController::class, 'store'])->name('database.store');
-    Route::patch('database', [DatabaseController::class, 'update'])->name('database.update');
+    Route::post('/database', [DatabaseController::class, 'store'])->name('database.store');
+    Route::post('/database', [DatabaseController::class, 'import'])->name('database.import');
+    Route::patch('/database', [DatabaseController::class, 'update'])->name('database.update');
     Route::delete('/database/delete/{id}', [DatabaseController::class, 'destroy'])->name('database.destroy');
 
-    Route::post('berita', [BeritaController::class, 'store'])->name('berita.store');
-    Route::patch('berita', [BeritaController::class, 'update'])->name('berita.update');
+    Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
+    Route::patch('/berita', [BeritaController::class, 'update'])->name('berita.update');
     Route::delete('/berita/delete/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 
-    Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::post('admin', [AdminController::class, 'store'])->name('admin.store');
-    Route::patch('admin', [AdminController::class, 'update'])->name('admin.update');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+    Route::patch('/admin', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
