@@ -8,7 +8,7 @@ import Profile from "../../../../public/img/profile.jpg";
 
 export default function Detail({ auth, data }) {
   const [isEdit, setIsEdit] = useState(false);
-  const pekerjaan = data.other ? JSON.parse(data.other) : "";
+  const pekerjaan = data.other ? JSON.parse(data.other) : null;
   if (auth.user) {
     return (
       <Layout auth={auth}>
@@ -58,11 +58,18 @@ export default function Detail({ auth, data }) {
             <div className="text-lg font-light -space-y-1">
               <p>Pekerjaan: </p>
               <ul>
-                {pekerjaan.map((pekerjaan) => (
-                  <li className="list-disc list-inside" key={pekerjaan.id}>
-                    {`${pekerjaan.pekerjaan} - ${pekerjaan.tahunMasuk}-${pekerjaan.tahunSelesai}`}
-                  </li>
-                ))}
+                {pekerjaan &&
+                  pekerjaan.map(
+                    (pekerjaan) =>
+                      (pekerjaan.tahunMulai || pekerjaan.tahunSelesai) && (
+                        <li
+                          className="list-disc list-inside"
+                          key={pekerjaan.id}
+                        >
+                          {`${pekerjaan.pekerjaan} - ${pekerjaan.tahunMulai}-${pekerjaan.tahunSelesai}`}
+                        </li>
+                      )
+                  )}
               </ul>
             </div>
 
@@ -124,11 +131,15 @@ export default function Detail({ auth, data }) {
           <div className="text-lg font-light -space-y-1">
             <p>Pekerjaan: </p>
             <ul>
-              {pekerjaan.map((pekerjaan) => (
-                <li className="list-disc list-inside" key={pekerjaan.id}>
-                  {`${pekerjaan.pekerjaan} - ${pekerjaan.tahunMasuk}-${pekerjaan.tahunSelesai}`}
-                </li>
-              ))}
+              {pekerjaan &&
+                pekerjaan.map(
+                  (pekerjaan) =>
+                    (pekerjaan.tahunMulai || pekerjaan.tahunSelesai) && (
+                      <li className="list-disc list-inside" key={pekerjaan.id}>
+                        {`${pekerjaan.pekerjaan} - ${pekerjaan.tahunMulai}-${pekerjaan.tahunSelesai}`}
+                      </li>
+                    )
+                )}
             </ul>
           </div>
 

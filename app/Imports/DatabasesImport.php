@@ -17,11 +17,11 @@ class DatabasesImport implements ToModel, WithHeadingRow
     {
         return new Database([
             'name' => $row["nama"],
-            // 'npm' => $row[1],
-            // 'title' => $row[2],
+            'npm' => $row["npm"],
             'prodi' => $row["prodi"],
             'angkatan' => $row["angkatan"],
-            // 'lulusan' => $row[5],
+            'lulusan' => $row["lulusan"],
+            // 'title' => $row[2],
             // 'telepon' => $row[6],
             // 'email' => $row[7],
             // 'instagram' => $row[8],
