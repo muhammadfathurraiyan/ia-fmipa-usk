@@ -3,6 +3,7 @@ import ImageInput, { Input, InputError } from "../ui/input";
 import { Button, buttonClass } from "../ui/button";
 import { Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
+import Repeater from "./Repeater";
 
 export default function Dialog({
   isCreate,
@@ -18,6 +19,25 @@ export default function Dialog({
     for (let i = 1989; i <= 2030; i++) {
       dateArray.push(i);
     }
+
+    const [dataRepeater, setDataRepeater] = useState([
+      { id: 1, pekerjaan: "", tahunMulai: "", tahunSelesai: "" },
+    ]);
+
+    console.log(dataRepeater);
+
+    const handleRepeater = () => {
+      setDataRepeater((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          pekerjaan: "",
+          tahunMulai: "",
+          tahunSelesai: "",
+        },
+      ]);
+    };
+
     const { data, setData, post, processing, errors, reset } = useForm({
       name: "",
       npm: "",
@@ -30,20 +50,24 @@ export default function Dialog({
       instagram: "",
       linkedin: "",
       twitter: "",
-      other: "",
       description: "",
       img: "",
     });
 
     const submit = (e) => {
       e.preventDefault();
-      post(route("database.store"));
+      post(
+        route("database.store", {
+          ...data,
+          other: JSON.stringify(dataRepeater),
+        })
+      );
       setIsCreate(false);
     };
     return (
       <Modal
         closeable
-        maxWidth="3xl"
+        maxWidth="5xl"
         show={isCreate}
         onClose={() => setIsCreate(false)}
       >
@@ -93,8 +117,6 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <ImageInput value={data.img} setData={setData} />
-              </div>
-              <div>
                 <div>
                   <label htmlFor="prodi" className="text-xs font-medium">
                     Program Studi
@@ -168,6 +190,8 @@ export default function Dialog({
                   </select>
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="telepon" className="text-xs font-medium">
                     Telepon
@@ -194,8 +218,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="instagram" className="text-xs font-medium">
                     Instagram
@@ -235,18 +257,31 @@ export default function Dialog({
                   />
                   <InputError message={errors.twitter} className="mt-2" />
                 </div>
-                <div>
+              </div>
+              <div>
+                <div className="flex flex-col gap-1">
                   <label htmlFor="other" className="text-xs font-medium">
-                    Lainya
+                    Pekerjaan
                   </label>
-                  <Input
-                    id="other"
-                    name="other"
-                    type="text"
-                    value={data.other}
-                    onChange={(e) => setData("other", e.target.value)}
-                  />
-                  <InputError message={errors.other} className="mt-2" />
+                  {dataRepeater.map((data) => (
+                    <Repeater
+                      setDataRepeater={setDataRepeater}
+                      data={{
+                        id: data.id,
+                        pekerjaan: data.pekerjaan,
+                        tahunMulai: data.tahunMulai,
+                        tahunSelesai: data.tahunSelesai,
+                      }}
+                    />
+                  ))}
+                  <Button
+                    onClick={handleRepeater}
+                    type="button"
+                    variants={"primary"}
+                    className={"mt-1 w-fit"}
+                  >
+                    +
+                  </Button>
                 </div>
                 <div>
                   <label htmlFor="description" className="text-xs font-medium">
@@ -326,6 +361,25 @@ export default function Dialog({
     for (let i = 1989; i <= 2030; i++) {
       dateArray.push(i);
     }
+
+    const [dataRepeater, setDataRepeater] = useState(
+      database.other
+        ? JSON.parse(database.other)
+        : [{ id: 1, pekerjaan: "", tahunMulai: "", tahunSelesai: "" }]
+    );
+
+    const handleRepeater = () => {
+      setDataRepeater((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          pekerjaan: "",
+          tahunMulai: "",
+          tahunSelesai: "",
+        },
+      ]);
+    };
+
     const [isDelete, setIsDelete] = useState(false);
     const { data, setData, patch, processing, errors, reset } = useForm({
       name: database.name,
@@ -339,7 +393,6 @@ export default function Dialog({
       instagram: database.instagram,
       linkedin: database.linkedin,
       twitter: database.twitter,
-      other: database.email,
       description: database.description,
       img: database.image,
       id: database.id,
@@ -347,13 +400,18 @@ export default function Dialog({
 
     const submit = (e) => {
       e.preventDefault();
-      patch(route("database.update"));
+      patch(
+        route("database.update", {
+          ...data,
+          other: JSON.stringify(dataRepeater),
+        })
+      );
       setIsEdit(false);
     };
     return (
       <Modal
         closeable
-        maxWidth="2xl"
+        maxWidth="5xl"
         show={isEdit}
         onClose={() => setIsEdit(false)}
       >
@@ -403,8 +461,6 @@ export default function Dialog({
                   <InputError message={errors.name} className="mt-2" />
                 </div>
                 <ImageInput value={data.img} setData={setData} />
-              </div>
-              <div>
                 <div>
                   <label htmlFor="prodi" className="text-xs font-medium">
                     Program Studi
@@ -478,6 +534,8 @@ export default function Dialog({
                   </select>
                   <InputError message={errors.lulusan} className="mt-2" />
                 </div>
+              </div>
+              <div>
                 <div>
                   <label htmlFor="telepon" className="text-xs font-medium">
                     Telepon
@@ -504,8 +562,6 @@ export default function Dialog({
                   />
                   <InputError message={errors.email} className="mt-2" />
                 </div>
-              </div>
-              <div>
                 <div>
                   <label htmlFor="instagram" className="text-xs font-medium">
                     Instagram
@@ -545,18 +601,31 @@ export default function Dialog({
                   />
                   <InputError message={errors.twitter} className="mt-2" />
                 </div>
-                <div>
+              </div>
+              <div>
+                <div className="flex flex-col gap-1">
                   <label htmlFor="other" className="text-xs font-medium">
-                    Lainya
+                    Pekerjaan
                   </label>
-                  <Input
-                    id="other"
-                    name="other"
-                    type="text"
-                    value={data.other}
-                    onChange={(e) => setData("other", e.target.value)}
-                  />
-                  <InputError message={errors.other} className="mt-2" />
+                  {dataRepeater?.map((data) => (
+                    <Repeater
+                      setDataRepeater={setDataRepeater}
+                      data={{
+                        id: data.id,
+                        pekerjaan: data.pekerjaan,
+                        tahunMulai: data.tahunMulai,
+                        tahunSelesai: data.tahunSelesai,
+                      }}
+                    />
+                  ))}
+                  <Button
+                    onClick={handleRepeater}
+                    type="button"
+                    variants={"primary"}
+                    className={"mt-1 w-fit"}
+                  >
+                    +
+                  </Button>
                 </div>
                 <div>
                   <label htmlFor="description" className="text-xs font-medium">

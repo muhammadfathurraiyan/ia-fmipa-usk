@@ -41,7 +41,7 @@ Route::get('/database/{id}', [DatabaseController::class, 'show'])->name('databas
 
 Route::middleware('auth')->group(function () {
     Route::post('/database', [DatabaseController::class, 'store'])->name('database.store');
-    Route::post('/database', [DatabaseController::class, 'import'])->name('database.import');
+    Route::post('/database/import', [DatabaseController::class, 'import'])->name('database.import');
     Route::patch('/database', [DatabaseController::class, 'update'])->name('database.update');
     Route::delete('/database/delete/{id}', [DatabaseController::class, 'destroy'])->name('database.destroy');
 
